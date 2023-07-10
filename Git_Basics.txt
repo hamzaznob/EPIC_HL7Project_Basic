@@ -1,0 +1,359 @@
+
+
+Git Tutorial for Beginners: Learn Git in 1 Hour
+
+https://www.youtube.com/watch?v=8JJ101D3knE
+
+0:00:00 Introduction
+0:00:35 What is Git?
+0:03:07 Using Git
+0:06:11 Installing Git
+0:07:38 Configuring Git
+0:12:43 Getting Help
+0:13:35 Cheat Sheet
+0:14:05 Taking Snapshots 
+0:14:38 Initializing a Repository 
+0:17:10 Git Workflow
+0:21:46 Staging Files
+0:25:24 Committing Changes
+0:27:37 Committing Best Practices
+0:30:21 Skipping the Staging Area
+0:31:46 Removing Files
+0:33:48 Renaming or Moving Files
+0:36:06 Ignoring Files
+0:42:41 Short Status
+0:45:33 Viewing the Staged and Unstaged Changes 
+0:50:33 Visual Diff Tools
+0:55:27 Viewing the History
+0:57:39 Viewing a Commit
+1:01:37 Unstaging Files
+1:04:28 Discarding Local Changes
+1:06:17 Restoring a File to an Earlier Version 
+
+
+
+
+
+
+Git is a version contro system.
+
+Git is Distributer Version Control system.
+
+It is faster than TFS.
+
+
+Track history, and change management.
+
+
+
+VS Code, have Source control panne.
+
+Popular extention is GitLens
+
+Popular Softwares are:
+GitKraken GitUI
+SourceTree
+
+we are currently focusing on CMD.
+
+Because:
+All GUI Tools have some limitations.
+GUI tools are not always available(sometimes you are connecting to server where you don't have permissions to install GUI Tool).
+
+search: CMD
+
+
+1: git --version  // to check version
+
+GIT BASH (Global Information Tracker)(Born Again Shell)
+
+Configuring GIT
+
+Name:
+Email
+Default Editor
+Line Ending
+
+Three Levels of this setting , 
+(i) System Level  // For All users
+(ii) Global Level  // For all repoitories of current user
+(iii) Local // The Current Repository
+
+
+2: git config --global user.name "Hamza Zulfiqar"
+
+3: git config --gloal user.email hamzazulfiqar312@gmail.com
+
+4: git config --global core.editor "code --wait"
+
+5: git config --global -e  // setting in editor
+
+Next is: Now next step is How Git controls End Of line????????????
+
+\r : Carriage Return
+\n : Line Feed
+
+
+for this, Setting is
+
+core.autocrlf
+
+carriage return line field
+
+in Windows, end of lines are marked with, Carriage return and Line Feed
+CL | LF
+
+
+6: git config --global core.autocrlf true
+
+
+How to take snapshots of your project?
+
+Lets create directory,
+
+7: mkdir moon
+
+8: cd moon
+
+9: git init  // initialize git repository
+
+10 ls
+
+11 ls -a   // to list all
+
+
+if you remove .git folder, you will lost all of your project history.
+
+rm rf .git  // remove .git file.
+
+
+daily workflow.
+
+work > Stage  Commit into repository.
+
+12 git add file1 file2  // to add files into staging area.
+	git add .
+
+
+// this is the area we are proposing to next commit.
+
+
+git commit m "bug fixed"  // if your mesage is short.
+
+But if message is long, then we will use:
+ 
+13: git commit (then press enter key...)
+
+Best practices to commiting changes:
+
+Commentr should'not too big or too small.
+
+Commit Often (Means):
+	When Its a state, whern your code changing functionality, then commt, so that you can easily track your previous position, 
+
+Donot commit both bug and typo work commonly. If you done accidently, you could unstage it.
+
+Should be habit of having meaningfull comments to maintain proper history.
+_______________________________________________
+
+We could also skip the staging area.
+
+just type:
+
+14: git commit -a -m "my  (OR -am to combine)  message here"
+
+
+Now Removing Files___________________________
+
+delete one file and execute command.,
+
+15: git ls-files  // yo check files in staging area.
+
+it will showup deleted file also.
+
+to remove , write git rm file1.txt / or .*txt all text
+
+_______________________________________________________
+There are always some files , like log files, which we don't  need to push/commit. so we handel these files.
+
+so we make a special file to ignoring these all extra columns.
+
+
+command is: touch .gitignore
+
+
+create a file , and mention what you want to ignore, either you can write extentions or directories.(*.txt /log e.t.c)
+_______________________________________________________
+
+to remove file from staging area, 
+
+to get help: git rm -h
+
+16: git rm --cached -r filename.txt
+
+
+github.com/github/gitignore
+
+
+17: git status -s  // to check detail status (new/ New In Staging/Modified)
+
+
+To check that what we have changed in code that is in staging area, we will use below comand.
+
+18: git diff --staged
+
+to check changes in working directory, that w haven't staged yet we use below command.
+19: git diff
+
+20: git reset  // to remove all from staging area.
+
+
+https://www.youtube.com/watch?v=8JJ101D3knE
+
+time: 49:17
+
+
+Now use Visual Tool for git.
+
+
+git config --global diff.tool vscode
+
+next is how to launch vscode?
+
+git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
+n
+
+git config --global e
+
+
+Git History..............................
+
+
+
+git log 
+
+// to check history.
+
+
+git log --oneline
+
+git show unique_id
+OR
+git show HEAD~1  
+
+// show files with previous commit and changes.
+
+
+git ls-tree HEAD~1
+
+show all files that have been added.
+
+files are represent using blob anf directories are represent using tree.
+
+these are are objects that are stored in git database.
+
+
+How to undo local changes?????????????????????????????
+Using show, we can see object in git's database.
+
+git clean -fd
+// to clean local untracked files. We use above command.
+
+
+Restoring file on Local Version.
+
+
+-----------------------------------
+
+//to add current diroctory with remote repository:
+
+git remote add origin https://github.com/IbrahimFazal/Nobility_Portal_API.git
+
+
+//then, to fetch all branches:
+git fetch
+
+
+//then to list all remote branches
+git branch -r
+
+
+// create new branch based on origin listed branches.
+
+git checkout -b <new-branch> <remote-branch>
+
+
+// to check connected branch
+
+git branch --show-current
+
+
+//to list all branches
+git branch
+
+
+I have created branch, pushed that on remote repository, using 
+
+git push origin hamza_feature_dev 
+
+Now, to clone on local, use this:
+
+git clone --branch hamza_feature_dev https://github.com/IbrahimFazal/Nobility_Portal_API.git
+
+
+//after modification, to check modifications,
+
+git status
+
+// to add in staging area:
+git add .
+
+// to remove from staging area:
+
+git restore --staged Nobility_Portal_API/Controllers/AuthenticationController.cs
+ 
+ 
+ 
+Three-dot Git diff comparison
+The three-dot comparison shows the difference between the latest common commit of both branches (merge base) and the most recent version of the topic branch.
+
+Two-dot Git diff comparison
+The two-dot comparison shows the difference between the latest state of the base branch (for example, main) and the most recent version of the topic branch.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;net7.0</TargetFrameworks>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <Authors>Dave Bronson</Authors>
+    <Copyright>Copyright © Dave Bronson 2020-2022</Copyright>
+    <PackageProjectUrl>https://github.com/davebronson/clear-hl7-net</PackageProjectUrl>
+    <Summary>Enumerated coded values for the HL7® standard</Summary>
+    <PackageTags>hl7;hl7-builder;hl7-parser;hl7-message;hl7-generating;dotnet;healthcare;code;codesystem</PackageTags>
+    <Title>ClearHL7.Codes</Title>
+    <Description>Enumerated coded values for the HL7® standard</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageVersion>2.1.0</PackageVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackOnBuild>true</PackOnBuild>
+    <Owners>Dave Bronson</Owners>
+    <ReleaseVersion>2.1.0</ReleaseVersion>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Debug\netstandard2.0\ClearHl7.Codes.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\netstandard2.0\ClearHl7.Codes.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Microsoft.SourceLink.GitHub" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

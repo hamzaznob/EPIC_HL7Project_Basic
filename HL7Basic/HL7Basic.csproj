@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hl7.Fhir.R4" Version="5.2.0" />
+    <PackageReference Include="Hl7.Fhir.Serialization" Version="4.3.0" />
+    <PackageReference Include="nhapi" Version="3.2.2" />
+    <PackageReference Include="NHapi.Base" Version="3.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Ude.NetStandard" Version="1.2.0" />
+    <PackageReference Include="xunit.assert" Version="2.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+  
+    <Reference Include="ClearHl7">
+      <HintPath>..\clear-hl7-net-master\src\ClearHl7\bin\Debug\net5.0\ClearHl7.dll</HintPath>
+    </Reference>
+  
+    <Reference Include="ClearHl7.Codes">
+      <HintPath>..\clear-hl7-net-master\src\ClearHl7.Codes\bin\Debug\net5.0\ClearHl7.Codes.dll</HintPath>
+    </Reference>
+  
+    <Reference Include="hl7">
+      <HintPath>..\dotnet-core-hl7-master\src\hl7\bin\Debug\netstandard2.0\hl7.dll</HintPath>
+    </Reference>
+  
+    <Reference Include="HL7-dotnetcore">
+      <HintPath>..\HL7-dotnetcore-master\src\bin\Debug\netstandard2.0\HL7-dotnetcore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

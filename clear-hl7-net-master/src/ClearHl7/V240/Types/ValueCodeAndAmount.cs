@@ -1,0 +1,88 @@
+﻿using System;
+using System.Globalization;
+using ClearHl7.Helpers;
+using ClearHl7.Serialization;
+
+namespace ClearHl7.V240.Types
+{
+    /// <summary>
+    /// HL7 Version 2 UVC - Value Code And Amount.
+    /// </summary>
+    public class ValueCodeAndAmount : IType
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValueCodeAndAmount"/> class.
+        /// </summary>
+        public ValueCodeAndAmount()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValueCodeAndAmount"/> class.
+        /// </summary>
+        /// <param name="valueCode">UVC.1 - Value Code.</param>
+        public ValueCodeAndAmount(CodedWithNoExceptions valueCode)
+        {
+            ValueCode = valueCode;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValueCodeAndAmount"/> class.
+        /// </summary>
+        /// <param name="valueCode">UVC.1 - Value Code.</param>
+        /// <param name="valueAmount">UVC.2 - Value Amount.</param>
+        public ValueCodeAndAmount(CodedWithNoExceptions valueCode, Money valueAmount)
+        {
+            ValueCode = valueCode;
+            ValueAmount = valueAmount;
+        }
+
+        /// <inheritdoc/>
+        public bool IsSubcomponent { get; set; }
+
+        /// <summary>
+        /// UVC.1 - Value Code.
+        /// <para>Suggested: 0153 Value Code</para>
+        /// </summary>
+        public CodedWithNoExceptions ValueCode { get; set; }
+
+        /// <summary>
+        /// UVC.2 - Value Amount.
+        /// </summary>
+        public Money ValueAmount { get; set; }
+
+        /// <inheritdoc/>
+        public void FromDelimitedString(string delimitedString)
+        {
+            FromDelimitedString(delimitedString, null);
+        }
+
+        /// <inheritdoc/>
+        public void FromDelimitedString(string delimitedString, Separators separators)
+        {
+            Separators seps = separators ?? new Separators().UsingConfigurationValues();
+            string[] separator = IsSubcomponent ? seps.SubcomponentSeparator : seps.ComponentSeparator;
+            string[] segments = delimitedString == null
+                ? Array.Empty<string>()
+                : delimitedString.Split(separator, StringSplitOptions.None);
+
+            ValueCode = segments.Length > 0 && segments[0].Length > 0 ? TypeSerializer.Deserialize<CodedWithNoExceptions>(segments[0], true, seps) : null;
+            ValueAmount = segments.Length > 1 && segments[1].Length > 0 ? TypeSerializer.Deserialize<Money>(segments[1], true, seps) : null;
+        }
+
+        /// <inheritdoc/>
+        public string ToDelimitedString()
+        {
+            CultureInfo culture = CultureInfo.CurrentCulture;
+            string separator = IsSubcomponent ? Configuration.SubcomponentSeparator : Configuration.ComponentSeparator;
+
+            return string.Format(
+                                culture,
+                                StringHelper.StringFormatSequence(0, 2, separator),
+                                ValueCode?.ToDelimitedString(),
+                                ValueAmount?.ToDelimitedString()
+                                ).TrimEnd(separator.ToCharArray());
+        }
+    }
+}
